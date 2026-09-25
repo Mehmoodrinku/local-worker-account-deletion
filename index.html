@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Worker - Account Deletion</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f8ff;
+  margin: 0;
+  padding: 24px;
+  color: #172033;
+}
+
+.card {
+  max-width: 720px;
+  margin: 30px auto;
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+}
+
+h1 {
+  color: #1646a0;
+}
+
+h2 {
+  color: #23395d;
+  margin-top: 28px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 14px;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin-top: 7px;
+  border: 1px solid #ccd6e5;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+button {
+  margin-top: 18px;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: #1646a0;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.note {
+  background: #eef5ff;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 24px;
+}
+
+.small {
+  font-size: 13px;
+  color: #65738a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Local Worker — Account Deletion</h1>
+
+<p>
+This page is for users of the <strong>Local Worker</strong> app
+who want to request deletion of their account and associated personal data.
+</p>
+
+<h2>How to request deletion</h2>
+
+<p>
+Enter the mobile number used in Local Worker and your Worker ID
+or Customer ID if available. Submit the request using the button below.
+</p>
+
+<form onsubmit="sendRequest(event)">
+
+<label>Mobile number</label>
+<input
+  id="mobile"
+  type="tel"
+  inputmode="numeric"
+  maxlength="10"
+  required
+  placeholder="10-digit mobile number">
+
+<label>Worker ID / Customer ID (if available)</label>
+<input
+  id="accountId"
+  type="text"
+  placeholder="Example: LW-123456 or CU-123456">
+
+<label>Additional information (optional)</label>
+<textarea
+  id="message"
+  rows="4"
+  placeholder="Anything we should know about your deletion request"></textarea>
+
+<button type="submit">
+Request Account Deletion
+</button>
+
+</form>
+
+<div class="note">
+
+<strong>What happens next?</strong>
+
+<p>
+Your request will be reviewed and the account/data associated with
+the request will be processed for deletion.
+Data that must be retained for legitimate legal, security,
+fraud-prevention, or regulatory reasons may be retained as required.
+</p>
+
+</div>
+
+<h2>Data covered</h2>
+
+<p>
+The request may cover account/profile information associated with
+the Local Worker account, including mobile number, Worker ID or
+Customer ID, worker profile information, location information
+associated with a worker profile, and other account-related personal data.
+</p>
+
+<p class="small">
+App: Local Worker<br>
+Developer: Local Worker<br>
+Support: mehmoodrinku@gmail.com
+</p>
+
+</div>
+
+<script>
+
+function sendRequest(event) {
+
+  event.preventDefault();
+
+  const supportEmail = "mehmoodrinku@gmail.com";
+
+  const mobile =
+    document.getElementById("mobile").value.trim();
+
+  const accountId =
+    document.getElementById("accountId").value.trim();
+
+  const message =
+    document.getElementById("message").value.trim();
+
+  const subject =
+    encodeURIComponent(
+      "Local Worker - Account Deletion Request"
+    );
+
+  const body =
+    encodeURIComponent(
+      "I request deletion of my Local Worker account and associated personal data.\n\n" +
+      "Mobile number: " + mobile + "\n" +
+      "Worker/Customer ID: " + accountId + "\n" +
+      "Additional information: " + message
+    );
+
+  window.location.href =
+    "mailto:" +
+    supportEmail +
+    "?subject=" +
+    subject +
+    "&body=" +
+    body;
+}
+
+</script>
+
+</body>
+</html>
